@@ -6,10 +6,15 @@ const taskSchema = new mongoose.Schema({
     ref: "User",
     required: true
   },
+  title: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
   },
+  due_date: { type: String },
 }, {
   timestamps: true
 });

@@ -17,7 +17,9 @@ const Task = () => {
   const mode = taskId === undefined ? "add" : "update";
   const [task, setTask] = useState(null);
   const [formData, setFormData] = useState({
-    description: ""
+    title: "",
+    description: "",
+    due_date: "",
   });
   const [formErrors, setFormErrors] = useState({});
 
@@ -94,9 +96,27 @@ const Task = () => {
             <>
               <h2 className='text-center mb-4'>{mode === "add" ? "Add New Task" : "Edit Task"}</h2>
               <div className="mb-4">
+                <label htmlFor="title">Title</label>
+                <br />
+                <input type="text" name="title" id="title" value={formData.title} placeholder="Write here.." onChange={handleChange} />
+                {fieldError("title")}
+              </div>
+              <div className="mb-4">
                 <label htmlFor="description">Description</label>
                 <Textarea type="description" name="description" id="description" value={formData.description} placeholder="Write here.." onChange={handleChange} />
                 {fieldError("description")}
+              </div>
+              <div className="mb-4">
+              <label htmlFor="due_date">Due Date</label>
+              <br />
+              <input
+                type="date"
+                name="due_date"
+                className="form-control mb-3 "
+                placeholder="due_date"
+                onChange={handleChange}
+                required
+              />
               </div>
 
               <button className='bg-primary text-white px-4 py-2 font-medium hover:bg-primary-dark' onClick={handleSubmit}>{mode === "add" ? "Add task" : "Update Task"}</button>

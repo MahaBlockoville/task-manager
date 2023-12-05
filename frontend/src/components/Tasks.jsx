@@ -64,7 +64,9 @@ const Tasks = () => {
                     </Tooltip>
 
                   </div>
+                  <div className='whitespace-pre'>{task.title}</div>
                   <div className='whitespace-pre'>{task.description}</div>
+                  <div className='whitespace-pre'>{task.due_date}</div>
                 </div>
               ))
 

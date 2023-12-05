@@ -11,11 +11,20 @@ const profileRoutes = require("./routes/profileRoutes");
 app.use(express.json());
 app.use(cors());
 
-const mongoUrl = process.env.MONGODB_URL;
-mongoose.connect(mongoUrl, err => {
-  if (err) throw err;
-  console.log("Mongodb connected...");
-});
+const url = process.env.MONGODB_URL
+//"mongodb+srv://test_user:Saraswathi%40100%40cluster0-shard-00-01.cg4pl.mongodb.net:27017/task_manager?retryWrites=true&w=majority";
+
+const connectionParams={
+    useNEWUrlParser: true,
+    useUnifiedTopology: true,
+}
+mongoose.connect(url,connectionParams)
+.then( () => {
+    console.log('Connected to the database ')
+})
+.catch( (err) => {
+    console.error(`Error connecting to the database. n${err}`);
+})
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
