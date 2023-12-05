@@ -34,7 +34,7 @@ const Task = () => {
       const config = { url: `/tasks/${taskId}`, method: "get", headers: { Authorization: authState.token } };
       fetchData(config, { showSuccessToast: false }).then((data) => {
         setTask(data.task);
-        setFormData({ description: data.task.description });
+        setFormData({ description: data.task.description, title: data.task.title, due_date: data.task.due_date });
       });
     }
   }, [mode, authState, taskId, fetchData]);
@@ -114,6 +114,7 @@ const Task = () => {
                 name="due_date"
                 className="form-control mb-3 "
                 placeholder="due_date"
+                value={formData.due_date}
                 onChange={handleChange}
                 required
               />
